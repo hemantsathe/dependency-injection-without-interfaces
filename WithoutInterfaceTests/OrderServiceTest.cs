@@ -1,9 +1,7 @@
-using System;
 using System.Threading.Tasks;
-using Microsoft.VisualStudio.TestPlatform.Common.Logging;
+using Moq;
 using WithoutInterfaces;
 using Xunit;
-using Moq;
 
 namespace WithoutInterfaceTests
 {
@@ -24,9 +22,9 @@ namespace WithoutInterfaceTests
             var status = await orderService.Order();
 
             Assert.Equal(OrderStatus.Ok, status);
-            Assert.True(logger.ToString().Contains("ordering logic"));
-            Assert.False(logger.ToString().Contains("database"));
-            Assert.True(logger.ToString().Contains("mocked storage"));
+            Assert.Contains("ordering logic", logger.ToString());
+            Assert.DoesNotContain("database", logger.ToString());
+            Assert.Contains("mocked storage", logger.ToString());
         }
     }
 }

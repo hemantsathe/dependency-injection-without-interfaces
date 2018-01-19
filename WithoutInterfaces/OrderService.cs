@@ -1,23 +1,22 @@
-using System;
 using System.Threading.Tasks;
 
 namespace WithoutInterfaces
 {
     public class OrderService
     {
-        private readonly Logger logger;
-        private readonly Storage storage;
+        private readonly Logger _logger;
+        private readonly Storage _storage;
 
         public OrderService(Logger logger, Storage storage)
         {
-            this.logger = logger;
-            this.storage = storage;
+            _logger = logger;
+            _storage = storage;
         }
 
         public async Task<OrderStatus> Order()
         {
-            logger.Log("Doing some ordering logic here...\n");
-            await storage.Save();
+            _logger.Log("Doing some ordering logic here...\n");
+            await _storage.Save();
             return OrderStatus.Ok;
         }
     }

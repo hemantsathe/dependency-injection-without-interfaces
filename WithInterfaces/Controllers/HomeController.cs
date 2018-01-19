@@ -5,11 +5,11 @@ namespace WithInterfaces.Controllers
 {
     public class HomeController : Controller
     {
-        private readonly IOrderService orderService;
+        private readonly IOrderService _orderService;
 
         public HomeController(IOrderService orderService)
         {
-            this.orderService = orderService;
+            _orderService = orderService;
         }
 
         public IActionResult Index()
@@ -19,7 +19,7 @@ namespace WithInterfaces.Controllers
 
         public async Task<IActionResult> Order()
         {
-            ViewBag.OrderStatus = await orderService.Order();
+            ViewBag.OrderStatus = await _orderService.Order();
             return View();
         }
     }

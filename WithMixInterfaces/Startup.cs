@@ -1,7 +1,7 @@
 ﻿using Microsoft.AspNetCore.Builder;
 using Microsoft.Extensions.DependencyInjection;
 
-namespace WithoutInterfaces
+namespace WithMixInterfaces
 {
     public class Startup
     {
@@ -9,7 +9,8 @@ namespace WithoutInterfaces
         {
             services.AddMvc();
             services.AddTransient<OrderService>();
-            services.AddTransient<Storage>();
+            services.AddTransient<Logger>();
+            services.AddTransient<IStorage, Storage>();
         }
 
         public void Configure(IApplicationBuilder app)
